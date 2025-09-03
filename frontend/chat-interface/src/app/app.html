@@ -1,0 +1,30 @@
+<div class="app-container">
+    @if (branding()) {
+    <header class="app-header">
+        <div class="brand-section">
+            <img [src]="branding()!.logo_title" [alt]="branding()!.organization" class="brand-logo">
+            <div class="brand-info">
+                <h1>{{ branding()!.organization }}</h1>
+                <p class="slogan">{{ branding()!.slogan }}</p>
+            </div>
+        </div>
+    </header>
+    }
+
+    <main class="app-main">
+        <app-chat></app-chat>
+    </main>
+
+    @if (branding()) {
+    <footer class="app-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 {{ branding()!.organization }}. All rights reserved.</p>
+            <div class="footer-links">
+                <a [href]="branding()!.website" target="_blank">Website</a>
+                <a [href]="'mailto:' + branding()!.email">Email</a>
+                <a [href]="branding()!.github" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    }
+</div>

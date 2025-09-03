@@ -1,0 +1,54 @@
+<div class="chat-container">
+    <header class="chat-header">
+        <h1>HereAndNow AI Assistant</h1>
+        <div class="connection-status">
+            @if (isConnected()) {
+            <span class="status connected">● Connected</span>
+            } @else {
+            <span class="status disconnected">● Disconnected</span>
+            }
+        </div>
+        <button type="button" class="clear-btn" (click)="clearChat()">
+            Clear Chat
+        </button>
+    </header>
+
+    <div class="messages-container" #messagesContainer>
+        @for (message of messages(); track message.id) {
+        <div class="message" [class]="'message-' + message.sender">
+            <div class="message-content">
+                <div class="message-text">{{ message.text }}</div>
+                <div class="message-time">
+                    {{ message.timestamp | date:'short' }}
+                </div>
+            </div>
+        </div>
+        }
+
+        @if (isLoading()) {
+        <div class="message message-bot">
+            <div class="message-content">
+                <div class="typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+
+    <form class="message-input-container" (ngSubmit)="sendMessage()">
+        <div class="input-group">
+            <textarea [formControl]="messageControl" placeholder="Ask me about Angular development..."
+                class="message-input" rows="1" (keypress)="onKeyPress($event)" [disabled]="!isConnected()"></textarea>
+            <button type="submit" class="send-button" [disabled]="!canSend() || !isConnected()">
+                @if (isLoading()) {
+                <span class="loading-spinner"></span>
+                } @else {
+                Send
+                }
+            </button>
+        </div>
+    </form>
+</div>

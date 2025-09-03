@@ -1,0 +1,6 @@
+python-dotenv
+poml==0.0.8
+langchain
+langchain-google-genai
+flask
+flask-cors
