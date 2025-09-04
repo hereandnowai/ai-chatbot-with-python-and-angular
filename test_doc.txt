@@ -1,0 +1,5 @@
+Test document with key features:
+- Document parsing
+- POML-based prompt orchestration  
+- LLM integration for Retrieval-Augmented Generation (RAG)
+- Support for multiple file formats (.pdf, .txt, .docx, .csv)
