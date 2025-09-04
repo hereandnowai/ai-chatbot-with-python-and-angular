@@ -1,65 +1,256 @@
-# AI Chatbot with POML Integration - Learning Project
+# AI Chatbot with POML Integration
 
-## Overview
-This project demonstrates how to build a modern AI chatbot with file upload capabilities using POML (Prompt Orchestration Markup Language) for prompt engineering. It's designed as a learning resource for beginners to understand prompt engineering concepts and POML integration.
+<div align="center">
+  <img src="https://raw.githubusercontent.com/hereandnowai/images/refs/heads/main/logos/logo-of-here-and-now-ai.png" alt="HERE AND NOW AI" width="200"/>
+  
+  **designed with passion for innovation**
+  
+  [![Website](https://img.shields.io/badge/Website-hereandnowai.com-blue)](https://hereandnowai.com)
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-hereandnowai-blue)](https://www.linkedin.com/company/hereandnowai/)
+  [![GitHub](https://img.shields.io/badge/GitHub-hereandnowai-black)](https://github.com/hereandnowai)
+</div>
 
-## Key Features
-- **Text Chat**: Simple conversational AI using POML templates
-- **Document Analysis**: Upload and analyze PDF, TXT, DOCX, and CSV files
-- **Angular Frontend**: Modern Angular v20+ with signals and standalone components
-- **POML Integration**: Native document parsing without custom file parsing logic
+## 🚀 Overview
 
-## Architecture
+This project demonstrates how to build a modern AI chatbot with file upload capabilities using **POML (Prompt Orchestration Markup Language)** for advanced prompt engineering. Perfect for beginners learning AI development and prompt engineering concepts.
 
-### Backend (Python FastAPI)
-- **api.py** - Simplified FastAPI application with two main endpoints:
-  - `/api/chat` - Text-only conversations
-  - `/api/chat/upload` - File upload and analysis
-- **chatbot.py** - Core chatbot logic using POML templates
-- **prompt.poml** - POML template for text conversations
-- **document_prompt.poml** - POML template for document analysis
+### 🎯 What You'll Learn
+- Modern prompt engineering with POML
+- FastAPI backend development
+- Angular v20+ frontend with signals
+- Document processing and analysis
+- File upload handling
+- AI integration best practices
 
-### Frontend (Angular)
-- Modern Angular v20+ application with standalone components
-- Drag-and-drop file upload interface
-- Real-time chat interface
+## ✨ Key Features
 
-## POML Integration Benefits
+- 💬 **Text Chat**: Conversational AI powered by POML templates
+- 📄 **Document Analysis**: Upload and analyze PDF, TXT, DOCX, CSV files
+- 🎨 **Modern UI**: Angular v20+ with signals and standalone components
+- 🔄 **POML Integration**: Native document parsing without custom logic
+- 🚀 **Simplified API**: Clean, beginner-friendly FastAPI endpoints
 
-### Before (Complex Approach)
-- Custom file parsing logic for each format (PDF, DOCX, TXT, CSV)
-- Manual content extraction and formatting
-- ~300+ lines of parsing code in `file_parser.py`
-- Error-prone file handling
+## 🏗️ Architecture
 
-### After (POML Native Approach)
-- POML handles document parsing automatically with `<document src="{{ file_path }}" />`
-- Automatic format detection and parsing
-- Clean, readable templates
-- ~60 lines of simplified code
+### Backend Stack
+- **Python 3.10+** with FastAPI
+- **POML** for prompt orchestration
+- **Google Gemini AI** for language processing
+- **Langchain** for AI framework integration
 
-## Key Learning Points
+### Frontend Stack
+- **Angular v20+** with signals
+- **Standalone Components** architecture
+- **Drag & Drop** file upload
+- **Real-time** chat interface
 
-### 1. POML Document Handling
-```xml
-<document src="{{ file_path }}" />
+## 📁 Project Structure
+
 ```
-- Automatically parses PDF, TXT, DOCX, CSV files
-- No custom parsing logic needed
-- Built-in error handling
+ai-chatbot-with-python-and-angular/
+├── 🐍 Backend (Python FastAPI)
+│   ├── api.py              # Main FastAPI application (30 lines!)
+│   ├── chatbot.py          # Core chatbot logic
+│   ├── prompt.poml         # POML template for chat & documents
+│   ├── requirements.txt    # Python dependencies
+│   └── .env               # Environment variables
+│
+├── 🅰️ Frontend (Angular)
+│   └── chat-interface/
+│       ├── src/app/
+│       │   ├── components/chat/
+│       │   └── services/
+│       ├── public/
+│       │   └── branding.json
+│       └── package.json
+│
+└── 📚 Documentation
+    └── README.md          # This file
+```
 
-### 2. Template Structure
+## 🛠️ Complete Setup Guide
+
+### Prerequisites
+
+Before you start, ensure you have:
+- **Node.js 18+** installed
+- **Python 3.10+** installed
+- **Git** installed
+- **Google Gemini API Key** ([Get it here](https://makersuite.google.com/app/apikey))
+
+### Step 1: Clone the Repository
+
+```bash
+# Clone the repository
+git clone https://github.com/hereandnowai/ai-chatbot-with-python-and-angular.git
+
+# Navigate to project directory
+cd ai-chatbot-with-python-and-angular
+```
+
+### Step 2: Backend Setup (Python FastAPI)
+
+#### 2.1 Create Virtual Environment
+
+```bash
+# Create virtual environment
+python3 -m venv .venv
+
+# Activate virtual environment
+# On Linux/Mac:
+source .venv/bin/activate
+
+# On Windows:
+# .venv\Scripts\activate
+```
+
+#### 2.2 Install Dependencies
+
+```bash
+# Install Python packages
+pip install -r requirements.txt
+```
+
+#### 2.3 Environment Configuration
+
+```bash
+# Create environment file
+cp .env.example .env
+
+# Edit .env file and add your API key
+nano .env
+```
+
+Add your Google Gemini API key to `.env`:
+```env
+GEMINI_API_KEY=your_gemini_api_key_here
+```
+
+#### 2.4 Start Backend Server
+
+```bash
+# Start the FastAPI server
+python api.py
+
+# Alternative: Use uvicorn directly
+# uvicorn api:app --host 0.0.0.0 --port 8001 --reload
+```
+
+✅ **Backend Running**: http://localhost:8001
+
+### Step 3: Frontend Setup (Angular)
+
+Open a **new terminal** and navigate to the frontend directory:
+
+#### 3.1 Install Angular Dependencies
+
+```bash
+# Navigate to frontend directory
+cd frontend/chat-interface
+
+# Install Node.js dependencies
+npm install
+```
+
+#### 3.2 Start Frontend Development Server
+
+```bash
+# Start Angular development server
+npm start
+
+# Alternative command:
+# ng serve
+```
+
+✅ **Frontend Running**: http://localhost:4200
+
+## 🎮 Usage Guide
+
+### Text Chat
+1. Open http://localhost:4200
+2. Type your question about Angular development
+3. Press Send or hit Enter
+
+**Example Questions:**
+```
+What are Angular signals?
+How do I create standalone components?
+Explain the new control flow syntax
+```
+
+### Document Analysis
+1. Click the 📎 attachment icon
+2. Upload a document (PDF, TXT, DOCX, CSV)
+3. Ask questions about the document content
+
+**Example Questions:**
+```
+What are the key features in this document?
+Summarize the main points
+What technologies are mentioned?
+```
+
+## 🔧 API Endpoints
+
+### Health Check
+```bash
+GET http://localhost:8001/api/health
+```
+
+### Text Chat
+```bash
+POST http://localhost:8001/api/chat
+Content-Type: application/json
+
+{
+    "message": "What is Angular?"
+}
+```
+
+### File Upload & Analysis
+```bash
+POST http://localhost:8001/api/chat/upload
+Content-Type: multipart/form-data
+
+file: [your-document.pdf]
+message: "Analyze this document"
+```
+
+## 💡 POML Magic Explained
+
+### Before POML (Complex Way)
+```python
+# Custom file parsing - 300+ lines of code
+if file.endswith('.pdf'):
+    content = extract_pdf_text(file)
+elif file.endswith('.docx'):
+    content = extract_docx_text(file)
+elif file.endswith('.txt'):
+    content = read_text_file(file)
+# ... more parsing logic
+```
+
+### After POML (Simple Way)
+```xml
+<!-- Just 1 line in POML template! -->
+<document src="{{ file_path }}" parser="auto" />
+```
+
+### Complete POML Template
 ```xml
 <poml>
     <system-msg>
-        <!-- System instructions -->
+        <p if="{{ file_path }}">Document analysis assistant</p>
+        <p if="{{ !file_path }}">Angular development expert</p>
     </system-msg>
     
     <human-msg>
-        <cp caption="Document to Analyze">
-            <document src="{{ file_path }}" />
+        <!-- Document content (if uploaded) -->
+        <cp if="{{ file_path }}" caption="Document Content">
+            <document src="{{ file_path }}" parser="auto" />
         </cp>
         
+        <!-- User question -->
         <cp caption="User Question">
             <p>{{ question }}</p>
         </cp>
@@ -67,94 +258,206 @@ This project demonstrates how to build a modern AI chatbot with file upload capa
 </poml>
 ```
 
-### 3. List and Item Components
-Using semantic markup for better organization:
-```xml
-<list listStyle="decimal">
-    <item>Always use standalone components over NgModules</item>
-    <item>Use signals for state management</item>
-    <item>Use new control flow (@if, @for, @switch)</item>
-</list>
+## 🚀 Development Workflow
+
+### For Backend Changes
+
+1. **Modify Code**: Edit `api.py`, `chatbot.py`, or `prompt.poml`
+2. **Auto-Reload**: FastAPI automatically reloads on changes
+3. **Test**: Use curl or frontend to test changes
+
+```bash
+# Test text chat
+curl -X POST "http://localhost:8001/api/chat" \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Hello!"}'
+
+# Test file upload
+curl -X POST "http://localhost:8001/api/chat/upload" \
+  -F "file=@test.txt" \
+  -F "message=Analyze this file"
 ```
 
-## API Endpoints
+### For Frontend Changes
 
-### POST /api/chat
-Simple text chat
-```json
-{
-    "message": "What is Angular?"
+1. **Modify Code**: Edit Angular components in `src/app/`
+2. **Auto-Reload**: Angular CLI automatically reloads browser
+3. **Test**: Interact with the chat interface
+
+## 🎯 Key Learning Points
+
+### 1. Simplified API Design
+- **30 lines** of FastAPI code instead of 200+
+- **2 endpoints** handle all functionality
+- **Clean error handling** and file management
+
+### 2. Modern Angular Practices
+```typescript
+// Using signals for reactive state
+isConnected = signal<boolean>(false);
+
+// Standalone components
+@Component({
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule]
+})
+
+// New control flow
+@if (isConnected()) {
+  <p>Backend connected ✅</p>
+} @else {
+  <p>Backend disconnected ❌</p>
 }
 ```
 
-### POST /api/chat/upload
-File upload and analysis
+### 3. POML Best Practices
+- **Conditional logic** with `if="{{ condition }}"`
+- **Semantic components** like `<cp>` and `<document>`
+- **Template reuse** for multiple scenarios
+
+## 🐛 Troubleshooting
+
+### Backend Issues
+
+**Problem**: `ModuleNotFoundError`
 ```bash
-curl -X POST "http://localhost:8002/api/chat/upload" \
-  -F "file=@document.pdf" \
-  -F "message=Summarize this document"
+# Solution: Activate virtual environment
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-## Setup Instructions
-
-1. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-2. **Environment Setup**
-   ```bash
-   cp .env.example .env
-   # Add your GEMINI_API_KEY
-   ```
-
-3. **Start Backend**
-   ```bash
-   python3 -m uvicorn api:app --reload --host 0.0.0.0 --port 8002
-   ```
-
-4. **Start Frontend**
-   ```bash
-   cd frontend/chat-interface
-   npm install
-   npm start
-   ```
-
-## Educational Value
-
-This project teaches:
-- **Prompt Engineering**: How to structure prompts using POML
-- **Document Processing**: Native POML document handling vs custom parsing
-- **API Design**: Clean, simple FastAPI endpoints
-- **Modern Frontend**: Angular v20+ best practices
-- **File Handling**: Secure file upload and processing
-
-## POML Benefits Demonstrated
-
-1. **Simplicity**: Reduced codebase by 80%
-2. **Reliability**: Built-in error handling and parsing
-3. **Maintainability**: Clear, semantic templates
-4. **Extensibility**: Easy to add new document types
-5. **Best Practices**: Structured prompt engineering
-
-## Next Steps for Learners
-
-1. Experiment with different POML components
-2. Add new document types
-3. Implement structured output parsing
-4. Add authentication and file management
-5. Explore advanced POML features like tool calling
-
-## Files Structure
-```
-├── api.py                  # FastAPI backend (simplified)
-├── chatbot.py             # Core chatbot logic
-├── prompt.poml            # Text chat template
-├── document_prompt.poml   # Document analysis template
-├── requirements.txt       # Python dependencies
-├── .env                   # Environment variables
-└── frontend/
-    └── chat-interface/    # Angular application
+**Problem**: `GEMINI_API_KEY not found`
+```bash
+# Solution: Check .env file
+cat .env
+# Make sure GEMINI_API_KEY=your_key_here
 ```
 
-This project demonstrates that with POML, you can build powerful AI applications with minimal code while maintaining clean, readable prompt templates that are easy to understand and modify.
+**Problem**: Port 8001 already in use
+```bash
+# Solution: Kill existing process
+pkill -f "python.*api.py"
+# Or use different port
+uvicorn api:app --port 8002
+```
+
+### Frontend Issues
+
+**Problem**: `ng: command not found`
+```bash
+# Solution: Install Angular CLI
+npm install -g @angular/cli
+```
+
+**Problem**: Port 4200 already in use
+```bash
+# Solution: Use different port
+ng serve --port 4201
+```
+
+**Problem**: Backend connection failed
+- ✅ Check backend is running on http://localhost:8001
+- ✅ Check CORS is enabled in `api.py`
+- ✅ Verify `/api/health` endpoint responds
+
+## 📝 Example Use Cases
+
+### 1. Learning Angular
+```
+User: "What are the benefits of signals in Angular?"
+AI: "Signals provide fine-grained reactivity, better performance..."
+```
+
+### 2. Document Analysis
+```
+Upload: project-requirements.pdf
+Question: "What are the main requirements?"
+AI: "The document lists 5 key requirements: 1. User authentication..."
+```
+
+### 3. Code Review
+```
+Upload: component.ts
+Question: "How can I improve this component?"
+AI: "Consider using signals instead of observables for state management..."
+```
+
+## 🌟 Advanced Features
+
+### Custom POML Templates
+
+Create specialized templates for different use cases:
+
+```xml
+<!-- Code review template -->
+<poml>
+    <system-msg>
+        <p>You are a senior Angular developer reviewing code for best practices.</p>
+    </system-msg>
+    
+    <human-msg>
+        <cp caption="Code to Review">
+            <document src="{{ file_path }}" />
+        </cp>
+        
+        <hint>Provide specific, actionable feedback using Angular v20+ best practices.</hint>
+    </human-msg>
+</poml>
+```
+
+### Environment Configurations
+
+```bash
+# Development
+GEMINI_API_KEY=dev_key
+DEBUG=true
+
+# Production
+GEMINI_API_KEY=prod_key
+DEBUG=false
+CORS_ORIGINS=["https://yourdomain.com"]
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how to get started:
+
+1. **Fork** the repository
+2. **Create** a feature branch
+3. **Make** your changes
+4. **Test** thoroughly
+5. **Submit** a pull request
+
+## 📞 Support & Contact
+
+<div align="center">
+
+**HERE AND NOW AI**
+
+🌐 **Website**: [hereandnowai.com](https://hereandnowai.com)  
+📧 **Email**: info@hereandnowai.com  
+📱 **Mobile**: +91 996 296 1000  
+
+**Connect with us:**
+- 💼 [LinkedIn](https://www.linkedin.com/company/hereandnowai/)
+- 📘 [Blog](https://hereandnowai.com/blog)
+- 🐙 [GitHub](https://github.com/hereandnowai)
+- 📸 [Instagram](https://instagram.com/hereandnow_ai)
+- 🐦 [X (Twitter)](https://x.com/hereandnow_ai)
+- 📺 [YouTube](https://youtube.com/@hereandnow_ai)
+
+</div>
+
+## 📜 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/hereandnowai/images/refs/heads/main/logos/caramel.jpeg" alt="Caramel AI" width="50"/>
+  <br>
+  <em>Built with ❤️ by HERE AND NOW AI</em>
+  <br>
+  <strong>designed with passion for innovation</strong>
+</div>
