@@ -33,6 +33,12 @@ export class ChatComponent implements AfterViewChecked {
     constructor() {
         this.checkConnection();
         this.addWelcomeMessage();
+        // Set initial connection to true and retry if needed
+        setTimeout(() => {
+            if (!this.isConnected()) {
+                this.checkConnection();
+            }
+        }, 1000);
     }
 
     ngAfterViewChecked() {
@@ -41,8 +47,21 @@ export class ChatComponent implements AfterViewChecked {
 
     private checkConnection() {
         this.chatService.checkHealth().subscribe({
-            next: () => this.isConnected.set(true),
-            error: () => this.isConnected.set(false)
+            next: () => {
+                this.isConnected.set(true);
+                console.log('Backend connection: OK');
+            },
+            error: (error) => {
+                this.isConnected.set(false);
+                console.log('Backend connection failed:', error);
+                // Retry after 2 seconds
+                setTimeout(() => {
+                    this.chatService.checkHealth().subscribe({
+                        next: () => this.isConnected.set(true),
+                        error: () => console.log('Retry connection failed, will update on next API call')
+                    });
+                }, 2000);
+            }
         });
     }
 
@@ -83,6 +102,7 @@ export class ChatComponent implements AfterViewChecked {
         if (file) {
             this.chatService.sendMessageWithFile(file, messageText || 'Please analyze this file.').subscribe({
                 next: (response: FileUploadResponse) => {
+                    this.isConnected.set(true); // Update connection status on success
                     const botMessage: ChatMessage = {
                         id: crypto.randomUUID(),
                         text: response.message,
@@ -94,6 +114,7 @@ export class ChatComponent implements AfterViewChecked {
                     this.clearFile();
                 },
                 error: (error: any) => {
+                    this.isConnected.set(false); // Update connection status on error
                     const errorMessage: ChatMessage = {
                         id: crypto.randomUUID(),
                         text: 'Sorry, I encountered an error. Please try again.',
@@ -109,6 +130,7 @@ export class ChatComponent implements AfterViewChecked {
         } else {
             this.chatService.sendMessage(messageText!).subscribe({
                 next: (response: ChatResponse) => {
+                    this.isConnected.set(true); // Update connection status on success
                     const botMessage: ChatMessage = {
                         id: crypto.randomUUID(),
                         text: response.response,
@@ -119,6 +141,7 @@ export class ChatComponent implements AfterViewChecked {
                     this.isLoading.set(false);
                 },
                 error: (error: any) => {
+                    this.isConnected.set(false); // Update connection status on error
                     const errorMessage: ChatMessage = {
                         id: crypto.randomUUID(),
                         text: 'Sorry, I encountered an error. Please try again.',
