@@ -2,5 +2,10 @@ python-dotenv
 poml==0.0.8
 langchain
 langchain-google-genai
-flask
-flask-cors
+fastapi
+uvicorn
+python-multipart
+PyPDF2
+python-docx
+pandas
+openpyxl

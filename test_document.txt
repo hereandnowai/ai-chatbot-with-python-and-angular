@@ -1,0 +1,16 @@
+Test Document for Chatbot File Upload
+
+This is a sample text document to test the file upload functionality of the chatbot application.
+
+Key Features:
+- Document parsing
+- POML-based prompt orchestration
+- LLM integration for Retrieval-Augmented Generation (RAG)
+- Support for multiple file formats (.pdf, .txt, .docx, .csv)
+
+Test Questions:
+1. What are the key features mentioned in this document?
+2. What file formats are supported?
+3. What technology is used for prompt orchestration?
+
+This document should be processed through the FileParser, rendered into a POML prompt, and then analyzed by the LLM to provide meaningful insights and answers.

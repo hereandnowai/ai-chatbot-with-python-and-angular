@@ -38,10 +38,34 @@
         }
     </div>
 
+    <!-- File Upload Section -->
+    @if (selectedFile()) {
+    <div class="file-preview">
+        <div class="file-info">
+            <span class="file-icon">📄</span>
+            <span class="file-name">{{ selectedFile()!.name }}</span>
+            <span class="file-size">({{ formatFileSize(selectedFile()!.size) }})</span>
+            <button type="button" class="remove-file-btn" (click)="clearFile()">×</button>
+        </div>
+    </div>
+    }
+
     <form class="message-input-container" (ngSubmit)="sendMessage()">
         <div class="input-group">
-            <textarea [formControl]="messageControl" placeholder="Ask me about Angular development..."
-                class="message-input" rows="1" (keypress)="onKeyPress($event)" [disabled]="!isConnected()"></textarea>
+            <!-- File Upload Button -->
+            <input #fileInput type="file" accept=".pdf,.txt,.docx,.csv" (change)="onFileSelected($event)"
+                style="display: none;">
+
+            <button type="button" class="file-upload-btn" (click)="fileInput.click()" [disabled]="!isConnected()"
+                title="Upload file (.pdf, .txt, .docx, .csv)">
+                📎
+            </button>
+
+            <textarea [formControl]="messageControl"
+                placeholder="Ask me about Angular development or upload a document for analysis..."
+                class="message-input" rows="1" (keypress)="onKeyPress($event)" [disabled]="!isConnected()"
+                (dragover)="onDragOver($event)" (drop)="onFileDrop($event)"></textarea>
+
             <button type="submit" class="send-button" [disabled]="!canSend() || !isConnected()">
                 @if (isLoading()) {
                 <span class="loading-spinner"></span>
@@ -50,5 +74,14 @@
                 }
             </button>
         </div>
+
+        <!-- Drag and Drop Zone -->
+        @if (!selectedFile() && isConnected()) {
+        <div class="drag-drop-zone" (dragover)="onDragOver($event)" (drop)="onFileDrop($event)"
+            [class.dragover]="isDragOver()">
+            <p>Drop files here or click the 📎 button to upload</p>
+            <small>Supported formats: PDF, TXT, DOCX, CSV</small>
+        </div>
+        }
     </form>
 </div>
