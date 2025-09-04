@@ -20,5 +20,19 @@
         </cp>
     </system-msg>
     
-    <human-msg>{{ question }}</human-msg>
+    <human-msg>
+        <cp if="{{ file_path }}" caption="Document Analysis">
+            <img if="{{ file_path.endsWith('.png') || file_path.endsWith('.jpg') || file_path.endsWith('.jpeg') }}" src="{{ file_path }}" />
+            <document if="{{ file_path.endsWith('.pdf') }}" src="{{ file_path }}" parser="pdf" />
+            <document if="{{ file_path.endsWith('.docx') }}" src="{{ file_path }}" parser="docx" />
+            <document if="{{ file_path.endsWith('.txt') }}" src="{{ file_path }}" parser="txt" />
+            <document if="{{ file_path.endsWith('.csv') }}" src="{{ file_path }}" parser="auto" />
+        </cp>
+        
+        <cp caption="User Question">
+            <p>{{ question }}</p>
+        </cp>
+        
+        <hint if="{{ file_path }}">Analyze the document content and provide insights based on the user's question. Use Angular v20+ best practices when providing code examples.</hint>
+    </human-msg>
 </poml>

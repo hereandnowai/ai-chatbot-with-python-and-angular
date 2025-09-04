@@ -16,14 +16,15 @@ def chatbot(user_input):
 def chatbot_with_document(file_path: str, user_query: str):
     """
     Enhanced chatbot that processes documents using POML's native document handling.
-    POML automatically handles PDF, TXT, DOCX, and CSV parsing.
+    POML automatically handles PDF, TXT, DOCX, and CSV parsing with conditional logic.
     """
     try:
-        # Use POML template with document handling
-        prompt_template = LangchainPomlTemplate.from_file("document_prompt.poml")
+        # Use the same POML template but with file_path parameter
+        # POML will conditionally show document content based on file_path presence
+        prompt_template = LangchainPomlTemplate.from_file("prompt.poml")
         chain = prompt_template | llm | StrOutputParser()
         
-        # Pass file path and question to POML template
+        # Pass both file path and question to the unified POML template
         response = chain.invoke({
             "file_path": file_path,
             "question": user_query
